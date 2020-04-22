@@ -3,9 +3,12 @@ N = 2
 
 Vagrant.configure("2") do |config|
     config.ssh.insert_key = false
+    # Can set disksize more than 10GB which is default, e.g. 25GB
+    #config.disksize.size = '25GB'
 
     config.vm.provider "virtualbox" do |v|
-        v.memory = 2048
+        # Can set more than memory or cpu , upon your needs
+        v.memory = 2096
         v.cpus = 2
     end
       
@@ -20,7 +23,6 @@ Vagrant.configure("2") do |config|
             }
         end
     end
-
     (1..N).each do |i|
         config.vm.define "node-#{i}" do |node|
             node.vm.box = IMAGE_NAME

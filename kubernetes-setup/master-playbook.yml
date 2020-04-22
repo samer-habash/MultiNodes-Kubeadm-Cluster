@@ -28,14 +28,14 @@
       state: present
 
   - name: Install docker and its dependecies
-    apt: 
+    apt:
       name: "{{ packages }}"
       state: present
       update_cache: yes
     vars:
       packages:
-      - docker-ce 
-      - docker-ce-cli 
+      - docker-ce
+      - docker-ce-cli
       - containerd.io
     notify:
       - docker status
@@ -131,14 +131,14 @@
       filename: kubernetes.list
 
   - name: Install Kubernetes binaries
-    apt: 
+    apt:
       name: "{{ packages }}"
       state: present
       update_cache: yes
     vars:
       packages:
-        - kubelet 
-        - kubeadm 
+        - kubelet
+        - kubeadm
         - kubectl
 
   - name: Create kubelet file # A bug in Ubuntu kubelet doesn't add it .
@@ -174,6 +174,21 @@
 
   - name: Copy join command to local file
     local_action: copy content="{{ join_command.stdout_lines[0] }}" dest="./join-command"
+    become: false
+
+  - name: Copy join command to local file
+    file:
+      path: "./.kube"
+      state: directory
+      mode: 0755
+    become: false
+    delegate_to: 127.0.0.1
+
+  - name: ansible copy file from remote to local.
+    fetch:
+     src: .kube/config
+     dest: .kube/
+     flat: yes
     become: false
 
   handlers:

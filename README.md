@@ -1,6 +1,6 @@
 This is an automated vagrant2.2+VirutalBox5.2 setup for creating kubeadm kubernetes .
 
-The project was modified and rebuilt in order to install 1 Master node and two slave nodes for learning purposes from your machine.
+The project has been built in order to install 1 Master node and two slave nodes for learning purposes from your machine.
 
 Please note that I am using Ubuntu18.04 image from vagrant.
 
@@ -8,7 +8,9 @@ If you are using machine MacOS or Windows , there will be changes only in instal
 
 My localmachine runs on ubuntu 18.04 which I wrote the code to create 3 VMs .
 
-You can change the slave nodes to get  more Nodes in the vagrant file with the hardcode parameter N=2
+You can change the slave nodes to get  more Nodes in the vagrant file with the hardcode parameter N=2.
+Change cpu, memory upon your needs.
+
 
 Default Behaviour:
 vagrant can ssh to the VMs, if you would like to ssh directly then you need to edit the file /etc/ssh/ssh_config , and replace :
@@ -17,13 +19,9 @@ TO => PasswordAuthentication yes
 Then do sshd restart : sudo service sshd restart
 
 
-=> Connecting your local machine to the K8S Master Node Cluster :
-1) Grab the .kube file from the Master Node by issuing :
-scp -r /home/vagrant/.kube $HOME 
-NOTE: If you have more than one cluster then copy it to the Cluster directory .
-
-2) export the kubernetes config env , or add it directly to .bashrc, .zshrc :
-export KUBECONFIG=$KUBECONFIG:$HOME/.kube/config
+=> Connecting to the K8S Cluster :
+1) The ansible copies the kube config file and insert it under kubernetes-setup directory. 
+export KUBECONFIG=$KUBECONFIG:$HOME/path/to/directory/kubernetes-setup/.kube/config
 source $HOME/.bashrc or $HOME/.zshrc
 
 
