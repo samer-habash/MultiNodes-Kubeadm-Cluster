@@ -21,6 +21,7 @@ Then do sshd restart : sudo service sshd restart
 
 => Connecting to the K8S Cluster :
 1) The ansible copies the kube config file and insert it under kubernetes-setup directory. 
+
 export KUBECONFIG=$KUBECONFIG:$HOME/path/to/directory/kubernetes-setup/.kube/config
 source $HOME/.bashrc or $HOME/.zshrc
 
