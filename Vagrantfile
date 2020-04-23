@@ -3,15 +3,12 @@ N = 2
 
 Vagrant.configure("2") do |config|
     config.ssh.insert_key = false
-    # Can set disksize more than 10GB which is default, e.g. 25GB
-    #config.disksize.size = '25GB'
 
     config.vm.provider "virtualbox" do |v|
         # Can set more than memory or cpu , upon your needs
         v.memory = 2096
         v.cpus = 2
     end
-      
     config.vm.define "k8s-master" do |master|
         master.vm.box = IMAGE_NAME
         master.vm.network "private_network", ip: "192.168.50.10"

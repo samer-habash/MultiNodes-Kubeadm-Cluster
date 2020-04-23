@@ -29,4 +29,4 @@ source $HOME/.bashrc or $HOME/.zshrc
 !!! Voila , you should be able afterwards to issue the command " kubectl get nodes -o wide " and see the nodes with its IP.
 
 
-
+=> For volume issues in kubeadm please refer to kubeadm-pvc-issue directory.
