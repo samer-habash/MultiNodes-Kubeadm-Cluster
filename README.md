@@ -4,8 +4,6 @@ The project has been built in order to install 1 Master node and two slave nodes
 
 Please note that I am using Ubuntu18.04 image from vagrant.
 
-If you are using machine MacOS or Windows , there will be changes only in installing the docker and kubeadm,kubelete and kubectl .
-
 My localmachine runs on ubuntu 18.04 which I wrote the code to create 3 VMs .
 
 You can change the slave nodes to get  more Nodes in the vagrant file with the hardcode parameter N=2.
